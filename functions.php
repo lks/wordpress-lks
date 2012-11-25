@@ -73,8 +73,8 @@ function bones_register_sidebars() {
     ));
     
     register_sidebar(array(
-    	'id' => 'sidebar2',
-    	'name' => 'Homepage Sidebar',
+    	'id' => 'sidebarlks',
+    	'name' => 'sidebarLks Sidebar',
     	'description' => 'Used only on the homepage page template.',
     	'before_widget' => '<div id="%1$s" class="widget %2$s">',
     	'after_widget' => '</div>',

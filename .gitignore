@@ -6,3 +6,7 @@
 library/.DS_Store
 
 .DS_Store
+
+wordpress-lks.esproj/Project.espressostorage
+
+*.espressostorage
