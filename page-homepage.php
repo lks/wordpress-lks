@@ -49,7 +49,9 @@ Template Name: Homepage
 						<script type="text/javascript">
 						   $(window).load(function() {
 						       $('#featured').orbit({ 
-						       	fluid: '16x6'
+						       	fluid: '16x6',
+						       	bullets: true,
+						       	bulletThumbs: true
 						       });
 						   });
 						</script>
@@ -66,7 +68,7 @@ Template Name: Homepage
 								
 							</div>
 							
-							<?php get_sidebar('sidebarLks'); // sidebar 2 ?>
+							<?php get_sidebar('sidebarlks'); // sidebar 2 ?>
 													
 						</section> <!-- end article header -->
 						
