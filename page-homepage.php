@@ -71,7 +71,9 @@ Template Name: Homepage
 							<?php get_sidebar('sidebarlks'); // sidebar 2 ?>
 													
 						</section> <!-- end article header -->
-						
+						<section class="row post_content">
+							<?php get_sidebar('sidebarhorizontal'); // sidebar 2 ?>
+						</section>
 						<footer>
 			
 							<p class="clearfix"><?php the_tags('<span class="tags">Tags: ', ', ', '</span>'); ?></p>
