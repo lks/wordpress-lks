@@ -1,1 +1,1 @@
-WP Theme based on Foundation framework and bones theme.
+WP Theme based on Foundation framework and Bones theme.
