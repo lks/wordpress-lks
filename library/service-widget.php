@@ -1,51 +1,64 @@
-<?php class MesArticlesRecents extends WP_Widget {
+<?php 
+
+/**
+* Widget to display my last service. This widget is concepted with responsive design constraint.
+* @author lks
+*
+*/
+class MyLastServices extends WP_Widget {
  
-    //Constructeur
-    function MesArticlesRecents()
+    /**
+    * Constructor
+    */
+    function MyLastServices()
     {
-        parent::WP_Widget(false, $name = 'Mes Articles Récents', array('name' => 'Mes Articles Récents', 'description' => 'Affichage des derniers articles du blog'));
+        parent::WP_Widget(false, $name = 'Mes derniers services', array('name' => 'Mes derniers services', 'description' => 'Affichage des derniers articles du blog'));
     }
  
-    //Affichage du widget
+    /**
+    * Display the widget with the settings parameters
+    */
     function widget($args, $instance)
     {
-        //Récupération des paramètres
         extract($args);
         $title = apply_filters('widget_title', $instance['title']);
         $nb_posts = $instance['nb_posts'];
-         
-        //Récupération des articles
         $lastposts = get_posts(array('post_type'=>"service_post_type"));
      
-        //Affichage
+        //display items
         echo $before_widget;
         if ($title)
             echo $before_title . $title . $after_title;
         else
-            echo $before_title . 'Articles Récents' . $after_title;
+            echo $before_title . 'My last services' . $after_title;
              
         echo '<ul>';
         foreach ( $lastposts as $post ) : 
             setup_postdata($post); ?>
-            <li><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a></li>
+            <li class="four columns">
+                <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
+            </li>
         <?php endforeach;
         echo '</ul>';
         echo $after_widget;
     }
  
-    //Mise à jour des paramètres du widget
+    /**
+    * Update parameters of this widget
+    */
     function update($new_instance, $old_instance)
     {
         $instance = $old_instance;
  
-        //Récupération des paramètres envoyés
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['nb_posts'] = $new_instance['nb_posts'];
  
         return $instance;
     }
  
-    //Affichage des paramètres du widget dans l'admin
+    /**
+    * Form to get parameters
+    */
     function form($instance)
     {
         $title = esc_attr($instance['title']);
@@ -68,7 +81,7 @@
 }
  
 function dfr_register_widget() {
-    register_widget( 'MesArticlesRecents' );
+    register_widget( 'MyLastServices' );
 }
 add_action('widgets_init', 'dfr_register_widget');
 
