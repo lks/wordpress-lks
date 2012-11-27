@@ -64,6 +64,14 @@ header .menu-action .button.small svg {
 	height: auto;
 }
 
+ul.listing-item li.first {
+	padding-left: 0;
+}
+
+ul.listing-item li.last {
+	padding-right: 0;
+}
+
 ul.tabs.vertical {
     border-bottom: 1px solid #E6E6E6;
     height: auto;

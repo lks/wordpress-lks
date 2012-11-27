@@ -7,11 +7,16 @@
 */
 class MyLastServices extends WP_Widget {
  
+    public $number_column_ref;
     /**
     * Constructor
     */
     function MyLastServices()
     {
+        $this->number_column_ref = array(1=>"twelve",
+                        2=> "six",
+                        3=> "four",
+                        4=> "three");
         parent::WP_Widget(false, $name = 'Mes derniers services', array('name' => 'Mes derniers services', 'description' => 'Affichage des derniers articles du blog'));
     }
  
@@ -23,7 +28,7 @@ class MyLastServices extends WP_Widget {
         extract($args);
         $title = apply_filters('widget_title', $instance['title']);
         $nb_posts = $instance['nb_posts'];
-        $lastposts = get_posts(array('post_type'=>"service_post_type"));
+        $lastposts = get_posts(array('post_type'=>"service_post_type", 'numberposts'=>$nb_posts));
      
         //display items
         echo $before_widget;
@@ -31,14 +36,27 @@ class MyLastServices extends WP_Widget {
             echo $before_title . $title . $after_title;
         else
             echo $before_title . 'My last services' . $after_title;
-             
-        echo '<ul>';
+        echo '<ul class="listing-item">';
+        $i = 0;
         foreach ( $lastposts as $post ) : 
-            setup_postdata($post); ?>
-            <li class="four columns">
-                <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
+            setup_postdata($post); 
+
+            //manage the padding settings
+            $class_option = "";
+            if($i == 0) {
+                $class_option = "first"; 
+            } else if (($i)%$nb_posts == ($nb_posts-1)) {
+                $class_option = "last"; 
+            } ?>
+
+            <li class="<?php echo $this->number_column_ref[$nb_posts]; ?> columns <?php echo $class_option; ?>">
+                <div class="panel">
+                    <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
+                </div>
             </li>
-        <?php endforeach;
+        <?php 
+         $i++;
+        endforeach;
         echo '</ul>';
         echo $after_widget;
     }
