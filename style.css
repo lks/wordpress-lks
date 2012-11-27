@@ -64,12 +64,23 @@ header .menu-action .button.small svg {
 	height: auto;
 }
 
+ul.listing-item {
+	list-style: none;
+}
+
 ul.listing-item li.first {
 	padding-left: 0;
 }
 
 ul.listing-item li.last {
 	padding-right: 0;
+}
+
+div.generic-bloc {
+	width: 218px;
+	height: 100px;
+	background: #CCC;
+	margin-bottom: 20px;
 }
 
 ul.tabs.vertical {

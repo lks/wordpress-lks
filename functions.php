@@ -13,6 +13,7 @@ require_once('library/bones.php');            // core functions (don't remove)
 require_once('library/plugins.php');          // plugins & extra functions (optional)
 require_once('library/service-widget.php');          // plugins & extra functions (optional)
 require_once('library/service-post-type.php'); // custom post type example
+require_once('library/image-sizes.php'); 
 
 // Options panel
 require_once('library/options-panel.php');
@@ -490,5 +491,7 @@ class footer_links_walker extends Walker_Nav_Menu
                 return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
             }       
 } 
+
+
 
 ?>

@@ -1,7 +1,7 @@
 <?php 
 
 /**
-* Widget to display my last service. This widget is concepted with responsive design constraint.
+* Widget to display my last service. This widget is concepted with responsive design constraints.
 * @author lks
 *
 */
@@ -50,9 +50,9 @@ class MyLastServices extends WP_Widget {
             } ?>
 
             <li class="<?php echo $this->number_column_ref[$nb_posts]; ?> columns <?php echo $class_option; ?>">
-                <div class="panel">
+                    <?php echo $this->manageThumbnail($post->ID); ?>
                     <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
-                </div>
+                
             </li>
         <?php 
          $i++;
@@ -95,6 +95,20 @@ class MyLastServices extends WP_Widget {
             </label>
         </p>
     <?php
+    }
+
+    /**
+    * Manage the display of a thumbnail. 
+    * If there aren't thumbnail, I display a generic picture.
+    *
+    * @param $ID Id of post to display.
+    */
+    function manageThumbnail($ID) {
+        $thumbnail = get_the_post_thumbnail($ID, 'post-service-size');
+        if("" == $thumbnail) {
+            $thumbnail =  "<div class='generic-bloc'></div>";
+        }
+        return $thumbnail;
     }
 }
  
