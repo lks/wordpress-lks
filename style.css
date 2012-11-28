@@ -80,9 +80,19 @@ ul.listing-item li.last {
 	padding-right: 0;
 }
 
+div.thumb-service-txt {
+	position: absolute;
+	z-index:1;
+}
+
+div.thumb-service-img {
+	position: relative;
+	z-index:0;
+}
+
 div.generic-bloc {
 	width: 100%;
-	height: 100px;
+	height: 100%;
 	background: #CCC;
 	margin-bottom: 20px;
 }

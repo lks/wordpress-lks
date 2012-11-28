@@ -71,5 +71,12 @@ $(document).ready(function() {
 		}
 	  })
 	});
+	$('div.thumb-service-txt').hide();
+	$('div.thumb-service-img').mouseenter(function(e) {
+        $('#'+this.id+'-txt').show('slow');
+    });
+    $('div.thumb-service-txt').mouseleave(function(e) {
+	 $('div.thumb-service-txt').hide('slow');
+	});
 	 
 }); /* end of as page load scripts */

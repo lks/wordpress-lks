@@ -57,7 +57,11 @@ class MyLastServices extends WP_Widget {
             } ?>
 
             <li class="<?php echo $this->number_column_ref[$nb_posts]; ?> columns <?php echo $class_option; ?>">
-                <?php echo $this->manageThumbnail($post->ID); ?>
+                 <div id="thumb-service-<?php echo $i; ?>-txt" class="thumb-service-txt generic-bloc">
+                </div>
+                <div class="thumb-service-img" id="thumb-service-<?php echo $i; ?>">
+                    <?php echo $this->manageThumbnail($post->ID); ?>
+                </div>
                 <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
                 <p><?php echo substr($post->post_excerpt, 0, $nb_str)."..."; ?></p>
                 <p><a href="<?php get_permalink($post->ID); ?>">Read more »</a></p>
