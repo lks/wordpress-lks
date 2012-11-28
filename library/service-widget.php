@@ -28,6 +28,8 @@ class MyLastServices extends WP_Widget {
         extract($args);
         $title = apply_filters('widget_title', $instance['title']);
         $nb_posts = $instance['nb_posts'];
+        $nb_str = $instance['nb_str'];
+
         $lastposts = get_posts(array('post_type'=>"service_post_type", 'numberposts'=>$nb_posts));
      
         //display items
@@ -38,6 +40,11 @@ class MyLastServices extends WP_Widget {
             echo $before_title . 'My last services' . $after_title;
         echo '<ul class="listing-item">';
         $i = 0;
+
+        if(!(isset($nb_str) && $nb_str > 0)) {
+            $nb_str = 130;
+        }
+
         foreach ( $lastposts as $post ) : 
             setup_postdata($post); 
 
@@ -50,9 +57,10 @@ class MyLastServices extends WP_Widget {
             } ?>
 
             <li class="<?php echo $this->number_column_ref[$nb_posts]; ?> columns <?php echo $class_option; ?>">
-                    <?php echo $this->manageThumbnail($post->ID); ?>
-                    <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
-                
+                <?php echo $this->manageThumbnail($post->ID); ?>
+                <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
+                <p><?php echo substr($post->post_excerpt, 0, $nb_str)."..."; ?></p>
+                <p><a href="<?php get_permalink($post->ID); ?>">Read more »</a></p>
             </li>
         <?php 
          $i++;
@@ -70,6 +78,7 @@ class MyLastServices extends WP_Widget {
  
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['nb_posts'] = $new_instance['nb_posts'];
+        $instance['nb_str'] = $new_instance['nb_str'];
  
         return $instance;
     }
@@ -81,6 +90,7 @@ class MyLastServices extends WP_Widget {
     {
         $title = esc_attr($instance['title']);
         $nb_posts = esc_attr($instance['nb_posts']);
+        $nb_str = esc_attr($instance['nb_str']);
     ?>
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>">
@@ -92,6 +102,12 @@ class MyLastServices extends WP_Widget {
             <label for="<?php echo $this->get_field_id('nb_posts'); ?>">
                 <?php echo 'Nombre d\'articles:'; ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('nb_posts'); ?>" name="<?php echo $this->get_field_name('nb_posts'); ?>" type="text" value="<?php echo $nb_posts; ?>" />
+            </label>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('nb_str'); ?>">
+                <?php echo 'Nombre de caractère (par défaut à 130 caratères) :'; ?>
+                <input class="widefat" id="<?php echo $this->get_field_id('nb_str'); ?>" name="<?php echo $this->get_field_name('nb_str'); ?>" type="text" value="<?php echo $nb_str; ?>" />
             </label>
         </p>
     <?php
