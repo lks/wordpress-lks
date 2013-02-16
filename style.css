@@ -72,30 +72,20 @@ ul.listing-item img{
 	width:100%;
 }
 
-ul.listing-item li.first {
-	padding-left: 0;
-}
-
-ul.listing-item li.last {
-	padding-right: 0;
-}
-
 div.thumb-service-txt {
 	position: absolute;
 	z-index:1;
+	background: red;
+	width:100%;
+	height:100%;
+}
+div.generic-bloc {
 }
 
 div.thumb-service-img {
-	position: relative;
-	z-index:0;
-}
-
-div.generic-bloc {
 	width: 100%;
-	height: 100%;
-	background: #CCC;
-	margin-bottom: 20px;
-}
+	position: relative;
+}	
 
 ul.tabs.vertical {
     border-bottom: 1px solid #E6E6E6;
